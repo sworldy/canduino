@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+#SPI commands used by the MCP2515.
 
 = Introduction =
 
