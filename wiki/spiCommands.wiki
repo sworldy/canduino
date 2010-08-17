@@ -2,12 +2,26 @@
 
 = Introduction =
 
-Add your content here.
+A list of the SPI commands used on the MCP2515.
+I am going to try to keep these formatted so that they may be cut and pasted into any arduino sketch.
 
 
-= Details =
+= Sample Code =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+{{{
+#define RESET 0xc0  
+#define READ 0x03 
+#define WRITE 0x02 //read and write comands for SPI
+
+#define READ_RX_BUF_1 0x90
+#define READ_RX_BUF_2 0x92
+#define READ_RX_BUF_3 0x94
+#define READ_RX_BUF_4 0x96 //SPI commands for reading CAN RX buffers
+
+#define LOAD_TX_BUF_1 0x40
+#define LOAD_TX_BUF_2 0x41
+#define LOAD_TX_BUF_3 0x42
+#define LOAD_TX_BUF_4 0x43
+#define LOAD_TX_BUF_5 0x44
+#define LOAD_TX_BUF_6 0x45 //SPI commands for loading CAN TX buffers
+}}}
