@@ -32,4 +32,18 @@ I am going to try to keep these formatted so that they may be cut and pasted int
 #define READ_STATUS 0xA0
 #define RX_STATUS 0xB0
 #define BIT_MODIFY 0x05 //Other commands
+
+#define CAN_31.25_KHZ 0b00001111
+#define CAN_62.5_KHZ 0b00000111
+#define CAN_125_KHZ 0b00000011
+#define CAN_250_KHZ 0b00000001
+#define CAN_500_KHZ 0b00000000 //For CNF1 when, CNF2 = 0b10010000 and CNF3 = 0b00000010 16MHz
+   
+//Registers
+#define CNF1 0x2A
+#define CNF2 0x29
+#define CNF3 0x28
+#define TXB0CTRL 0x30 
+#define TXB1CTRL 0x40
+#define TXB2CTRL 0x50 //TRANSMIT BUFFER CONTROL REGISTER
 }}}
