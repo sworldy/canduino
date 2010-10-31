@@ -5,7 +5,23 @@ CANClass can;//create can object
 
 CANClass::CANClass()//constructor for initializing can module.
 {
-
+  // set the slaveSelectPin as an output 
+  pinMode (SCK,OUTPUT);
+  pinMode (MISO,INPUT);
+  pinMode (MOSI, OUTPUT);
+  pinMode (SS, OUTPUT);
+  pinMode(RESET,OUTPUT);
+  
+  // initialize SPI:
+  SPI.begin(); 
+  SPI.setDataMode(SPI_MODE0);
+  SPI.setClockDivider(SPI_CLOCK_DIV4);
+  SPI.setBitOrder(MSBFIRST);
+  
+  digitalWrite(RESET,LOW); /* RESET CAN CONTROLLER*/
+  delay(10);
+  digitalWrite(RESET,HIGH);
+  delay(100);
 }
 
 void CANClass::baudConfig(int bitRate)//sets bitrate for CAN node
