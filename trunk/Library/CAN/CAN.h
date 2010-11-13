@@ -1,3 +1,5 @@
+#include <SPI.h>
+
 /*
 Created by: Kyle Crockett
 For canduino with 16MHz oscillator.
@@ -80,7 +82,7 @@ Not yet supported
 #define RX_STATUS 0xB0
 #define BIT_MODIFY 0x05 //Other commands
 
-   
+
 //Registers
 #define CNF1 0x2A
 #define CNF2 0x29
@@ -89,26 +91,28 @@ Not yet supported
 #define TXB1CTRL 0x40
 #define TXB2CTRL 0x50 //TRANSMIT BUFFER CONTROL REGISTER
 
+#include "WProgram.h"
+
 
 class CANClass
 {
 private:
 
 public:
-static void baudConfig(int bitRate);
+	static void baudConfig(int bitRate);
 
-static void send_0();
-static void send_1();
-static void send_2();
+	static void send_0();
+	static void send_1();
+	static void send_2();
 
-static byte readID_0();
-static byte readID_1();
-static byte readDATA_0();
-static byte readDATA_1();
+	static byte readID_0();
+	static byte readID_1();
+	static byte readDATA_0();
+	static byte readDATA_1();
 
-static void load_0(byte identifier, byte data);
-static void load_1(byte identifier, byte data);
-static void load_2(byte identifier, byte data);
+	static void load_0(byte identifier, byte data);
+	static void load_1(byte identifier, byte data);
+	static void load_2(byte identifier, byte data);
 
 };
 #endif
