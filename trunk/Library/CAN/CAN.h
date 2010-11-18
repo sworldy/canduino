@@ -49,7 +49,7 @@ Not yet supported
 Not yet supported
 
 */
-#ifndef
+#ifndef can_h
 #define can_h
 
 #define SCK 13 //spi
@@ -84,9 +84,9 @@ Not yet supported
 
 
 //Registers
-#define CNF1 0x2A
-#define CNF2 0x29
-#define CNF3 0x28
+#define CNF0 0x2A
+#define CNF1 0x29
+#define CNF2 0x28
 #define TXB0CTRL 0x30 
 #define TXB1CTRL 0x40
 #define TXB2CTRL 0x50 //TRANSMIT BUFFER CONTROL REGISTER
@@ -99,6 +99,7 @@ class CANClass
 private:
 
 public:
+	CANClass();
 	static void baudConfig(int bitRate);
 
 	static void send_0();
