@@ -16,11 +16,9 @@ void setup()
 
 void loop()
 {
-  byte man;
   can.load_0(0x64,0x34);
   can.send_0();
   delay(1000);
-  man = can.readID_0;//what? invalid?
   Serial.print("Recieve ID ONE: ");
   Serial.write(can.readID_0);
   Serial.print("Recieve ID TWO: ");
