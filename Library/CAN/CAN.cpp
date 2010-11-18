@@ -133,46 +133,54 @@ void CANClass::send_2()//transmits buffer 2
 
 byte CANClass::readID_0()//reads ID in recieve buffer 0
 {
+	byte retVal;
 	digitalWrite(SS, LOW);
 	delay(10);
 	SPI.transfer(READ_RX_BUF_0_ID);
-	SPI.transfer(0xFF);
+	retVal = SPI.transfer(0xFF);
 	delay(10);
 	digitalWrite(SS, HIGH);
 	delay(10);
+	return retVal;
 }
 
 byte CANClass::readID_1()//reads ID in reciever buffer 1
 {
+	byte retVal;
 	digitalWrite(SS, LOW);
 	delay(10);
 	SPI.transfer(READ_RX_BUF_1_ID);
-	SPI.transfer(0xFF);
+	retVal = SPI.transfer(0xFF);
 	delay(10);
 	digitalWrite(SS, HIGH);
 	delay(10);
+	return retVal;
 }
 
 byte CANClass::readDATA_0()//reads DATA in recieve buffer 0
 {
+	byte retVal;
 	digitalWrite(SS, LOW);
 	delay(10);
 	SPI.transfer( READ_RX_BUF_0_DATA);
-	SPI.transfer(0xFF);
+	retVal = SPI.transfer(0xFF);
 	delay(10);
 	digitalWrite(SS, HIGH);
 	delay(10);
+	return retVal;
 }
 
 byte CANClass::readDATA_1()//reads data in recieve buffer 1
 {
+	byte retVal;
 	digitalWrite(SS, LOW);
 	delay(10);
 	SPI.transfer( READ_RX_BUF_1_DATA);
-	SPI.transfer(0xFF);
+	retVal = SPI.transfer(0xFF);
 	delay(10);
 	digitalWrite(SS, HIGH);
 	delay(10);
+	return retVal;
 }
 
 void CANClass::load_0(byte identifier, byte data)//loads ID and DATA into transmit buffer 0
