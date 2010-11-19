@@ -106,10 +106,10 @@ public:
 	static void send_1();
 	static void send_2();
 
-	static byte readID_0();
-	static byte readID_1();
-	static byte readDATA_0();
-	static byte readDATA_1();
+	inline static byte readID_0();
+	inline static byte readID_1();
+	inline static byte readDATA_0();
+	inline static byte readDATA_1();
 
 	static void load_0(byte identifier, byte data);
 	static void load_1(byte identifier, byte data);
