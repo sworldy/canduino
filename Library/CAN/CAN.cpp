@@ -1,10 +1,10 @@
 #include <SPI.h>
 #include "WProgram.h"
-#include "CAN.h"
+#include <CAN.h>
 
+CANClass CAN;//create can object
 
-
-CANClass::CANClass()//constructor for initializing can module.
+void CANClass::begin()//constructor for initializing can module.
 {
 	// set the slaveSelectPin as an output 
 	pinMode (SCK,OUTPUT);
@@ -131,9 +131,9 @@ void CANClass::send_2()//transmits buffer 2
 	delay(10);
 }
 
-byte CANClass::readID_0()//reads ID in recieve buffer 0
+char CANClass::readID_0()//reads ID in recieve buffer 0
 {
-	byte retVal;
+	char retVal;
 	digitalWrite(SS, LOW);
 	delay(10);
 	SPI.transfer(READ_RX_BUF_0_ID);
@@ -144,9 +144,9 @@ byte CANClass::readID_0()//reads ID in recieve buffer 0
 	return retVal;
 }
 
-byte CANClass::readID_1()//reads ID in reciever buffer 1
+char CANClass::readID_1()//reads ID in reciever buffer 1
 {
-	byte retVal;
+	char retVal;
 	digitalWrite(SS, LOW);
 	delay(10);
 	SPI.transfer(READ_RX_BUF_1_ID);
@@ -157,9 +157,9 @@ byte CANClass::readID_1()//reads ID in reciever buffer 1
 	return retVal;
 }
 
-byte CANClass::readDATA_0()//reads DATA in recieve buffer 0
+char CANClass::readDATA_0()//reads DATA in recieve buffer 0
 {
-	byte retVal;
+	char retVal;
 	digitalWrite(SS, LOW);
 	delay(10);
 	SPI.transfer( READ_RX_BUF_0_DATA);
@@ -170,9 +170,9 @@ byte CANClass::readDATA_0()//reads DATA in recieve buffer 0
 	return retVal;
 }
 
-byte CANClass::readDATA_1()//reads data in recieve buffer 1
+char CANClass::readDATA_1()//reads data in recieve buffer 1
 {
-	byte retVal;
+	char retVal;
 	digitalWrite(SS, LOW);
 	delay(10);
 	SPI.transfer( READ_RX_BUF_1_DATA);
