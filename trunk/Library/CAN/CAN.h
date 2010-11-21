@@ -99,21 +99,22 @@ class CANClass
 private:
 
 public:
-	CANClass();
+	static void begin();
 	static void baudConfig(int bitRate);
 
 	static void send_0();
 	static void send_1();
 	static void send_2();
 
-	inline static byte readID_0();
-	inline static byte readID_1();
-	inline static byte readDATA_0();
-	inline static byte readDATA_1();
+	static char readID_0();
+	static char readID_1();
+	static char readDATA_0();
+	static char readDATA_1();
 
 	static void load_0(byte identifier, byte data);
 	static void load_1(byte identifier, byte data);
 	static void load_2(byte identifier, byte data);
 
 };
+extern CANClass CAN;
 #endif
