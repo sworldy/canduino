@@ -99,19 +99,19 @@ class CANClass
 private:
 
 public:
-	static void begin();
-	static void baudConfig(int bitRate);
+	static void begin();//sets up MCP2515
+	static void baudConfig(int bitRate);//sets up baud
 
-	static void send_0();
+	static void send_0();//request to transmit buffer X
 	static void send_1();
 	static void send_2();
 
-	static char readID_0();
+	static char readID_0();//read ID/DATA of recieve buffer X
 	static char readID_1();
 	static char readDATA_0();
 	static char readDATA_1();
 
-	static void load_0(byte identifier, byte data);
+	static void load_0(byte identifier, byte data);//load transmit buffer X
 	static void load_1(byte identifier, byte data);
 	static void load_2(byte identifier, byte data);
 
