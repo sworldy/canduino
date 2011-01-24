@@ -46,7 +46,10 @@ CNF3/BRGCON3    b'00000101'     0x05
 Not yet supported
 
 1000 kbps
-Not yet supported
+Settings added by Patrick Cruce(pcruce_at_igpp.ucla.edu)
+CNF1=b'10000000'=0x80 = SJW = 3 Tq. & BRP = 0
+CNF2=b'10010000'=0x90 = BLTMode = 1 & SAM = 0 & PS1 = 3 & PR = 1
+CNF3=b'00000010'=0x02 = SOF = 0  & WAKFIL = 0 & PS2 = 3
 
 */
 #ifndef can_h
@@ -90,9 +93,15 @@ Not yet supported
 #define TXB0CTRL 0x30 
 #define TXB1CTRL 0x40
 #define TXB2CTRL 0x50 //TRANSMIT BUFFER CONTROL REGISTER
+#define TXB0DLC 0x35 //Data length code registers
+#define TXB1DLC 0x45
+#define TXB2DLC 0x55
+#define CANCTRL 0x0F //Mode control register
+#define CANSTAT 0x0E //Mode status register
 
 #include "WProgram.h"
 
+enum CANMode {CONFIGURATION,NORMAL,SLEEP,LISTEN,LOOPBACK};
 
 class CANClass
 {
@@ -102,18 +111,39 @@ public:
 	static void begin();//sets up MCP2515
 	static void baudConfig(int bitRate);//sets up baud
 
+	//Method added to enable testing in loopback mode.(pcruce_at_igpp.ucla.edu)
+	static void setMode(CANMode mode) ;//put CAN controller in one of five modes
+
 	static void send_0();//request to transmit buffer X
 	static void send_1();
 	static void send_2();
 
 	static char readID_0();//read ID/DATA of recieve buffer X
 	static char readID_1();
+
 	static char readDATA_0();
 	static char readDATA_1();
+
+	//extending CAN data read to full frames(pcruce_at_igpp.ucla.edu)
+	//data_out should be array of 8-bytes or frame length.
+	static void readDATA_ff_0(byte* length_out,byte *data_out,unsigned short *id_out);
+	static void readDATA_ff_1(byte* length_out,byte *data_out,unsigned short *id_out);
+
+	//Adding can to read status register(pcruce_at_igpp.ucla.edu)
+	//can be used to determine whether a frame was received.
+	//(readStatus() & 0x80) == 0x80 means frame in buffer 0
+	//(readStatus() & 0x40) == 0x40 means frame in buffer 1
+	static byte readStatus();
 
 	static void load_0(byte identifier, byte data);//load transmit buffer X
 	static void load_1(byte identifier, byte data);
 	static void load_2(byte identifier, byte data);
+
+	//extending CAN write to full frame(pcruce_at_igpp.ucla.edu)
+	//Identifier should be a value between 0 and 2^11-1, longer identifiers will be truncated(ie does not support extended frames)
+	static void load_ff_0(byte length,unsigned short identifier,byte *data);
+	static void load_ff_1(byte length,unsigned short identifier,byte *data);
+	static void load_ff_2(byte length,unsigned short identifier,byte *data);
 
 };
 extern CANClass CAN;

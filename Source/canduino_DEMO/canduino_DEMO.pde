@@ -16,7 +16,7 @@ void setup()
 
 void loop()
 {
-  CAN.load_0(0x64,0x34);
+  CAN.load_0(0x64,0x34);//load message id 0x64 and data 0x34 into tx buffer 0
   CAN.send_0();
   delay(1000);
   Serial.print("Recieve ID ONE: ");
